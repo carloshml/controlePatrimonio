@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocumentoViewDlg" widgetVar="DocumentoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDocumentoTitle}">
+            <h:form id="DocumentoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{documentoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_id}"/>
+                        <h:outputText value="#{documentoController.selected.id}" title="#{bundle.ViewDocumentoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_nome}"/>
+                        <h:outputText value="#{documentoController.selected.nome}" title="#{bundle.ViewDocumentoTitle_nome}"/>
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_arquivo}"/>
+                        <h:outputText value="#{documentoController.selected.arquivo}" title="#{bundle.ViewDocumentoTitle_arquivo}"/>
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_bemMaterial}"/>
+                        <h:outputText value="#{documentoController.selected.bemMaterial}" title="#{bundle.ViewDocumentoTitle_bemMaterial}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DocumentoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

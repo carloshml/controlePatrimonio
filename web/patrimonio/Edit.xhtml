@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PatrimonioEditDlg" widgetVar="PatrimonioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPatrimonioTitle}">
+            <h:form id="PatrimonioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{patrimonioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPatrimonioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{patrimonioController.selected.id}" title="#{bundle.EditPatrimonioTitle_id}" required="true" requiredMessage="#{bundle.EditPatrimonioRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPatrimonioLabel_numeroPatrimonio}" for="numeroPatrimonio" />
+                        <p:inputText id="numeroPatrimonio" value="#{patrimonioController.selected.numeroPatrimonio}" title="#{bundle.EditPatrimonioTitle_numeroPatrimonio}" required="true" requiredMessage="#{bundle.EditPatrimonioRequiredMessage_numeroPatrimonio}"/>
+                        <p:outputLabel value="#{bundle.EditPatrimonioLabel_codigoBarras}" for="codigoBarras" />
+                        <p:inputText id="codigoBarras" value="#{patrimonioController.selected.codigoBarras}" title="#{bundle.EditPatrimonioTitle_codigoBarras}" required="true" requiredMessage="#{bundle.EditPatrimonioRequiredMessage_codigoBarras}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{patrimonioController.update}" value="#{bundle.Save}" update="display,:PatrimonioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PatrimonioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PatrimonioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

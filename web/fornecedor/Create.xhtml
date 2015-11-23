@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FornecedorCreateDlg" widgetVar="FornecedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFornecedorTitle}">
+            <h:form id="FornecedorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fornecedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFornecedorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{fornecedorController.selected.id}" title="#{bundle.CreateFornecedorTitle_id}" required="true" requiredMessage="#{bundle.CreateFornecedorRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateFornecedorLabel_cnpj}" for="cnpj" />
+                        <p:inputText id="cnpj" value="#{fornecedorController.selected.cnpj}" title="#{bundle.CreateFornecedorTitle_cnpj}" required="true" requiredMessage="#{bundle.CreateFornecedorRequiredMessage_cnpj}"/>
+                        <p:outputLabel value="#{bundle.CreateFornecedorLabel_razaoSocial}" for="razaoSocial" />
+                        <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{bundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{bundle.CreateFornecedorRequiredMessage_razaoSocial}"/>
+                        <p:outputLabel value="#{bundle.CreateFornecedorLabel_nomeFantasia}" for="nomeFantasia" />
+                        <p:inputText id="nomeFantasia" value="#{fornecedorController.selected.nomeFantasia}" title="#{bundle.CreateFornecedorTitle_nomeFantasia}" required="true" requiredMessage="#{bundle.CreateFornecedorRequiredMessage_nomeFantasia}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fornecedorController.create}" value="#{bundle.Save}" update="display,:FornecedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'FornecedorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FornecedorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

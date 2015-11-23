@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotaFiscalCreateDlg" widgetVar="NotaFiscalCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNotaFiscalTitle}">
+            <h:form id="NotaFiscalCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{notaFiscalController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{notaFiscalController.selected.id}" title="#{bundle.CreateNotaFiscalTitle_id}" required="true" requiredMessage="#{bundle.CreateNotaFiscalRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_numero}" for="numero" />
+                        <p:inputText id="numero" value="#{notaFiscalController.selected.numero}" title="#{bundle.CreateNotaFiscalTitle_numero}" required="true" requiredMessage="#{bundle.CreateNotaFiscalRequiredMessage_numero}"/>
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_dataEmissao}" for="dataEmissao" />
+                        <p:calendar id="dataEmissao" pattern="MM/dd/yyyy" value="#{notaFiscalController.selected.dataEmissao}" title="#{bundle.EditNotaFiscalTitle_dataEmissao}" required="true" requiredMessage="#{bundle.EditNotaFiscalRequiredMessage_dataEmissao}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_midia}" for="midia" />
+                        <p:inputTextarea rows="4" cols="30" id="midia" value="#{notaFiscalController.selected.midia}" title="#{bundle.CreateNotaFiscalTitle_midia}" required="true" requiredMessage="#{bundle.CreateNotaFiscalRequiredMessage_midia}"/>
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{notaFiscalController.selected.valorTotal}" title="#{bundle.CreateNotaFiscalTitle_valorTotal}" required="true" requiredMessage="#{bundle.CreateNotaFiscalRequiredMessage_valorTotal}"/>
+                        <p:outputLabel value="#{bundle.CreateNotaFiscalLabel_fornecedor}" for="fornecedor" />
+                        <p:selectOneMenu id="fornecedor" value="#{notaFiscalController.selected.fornecedor}" required="true" requiredMessage="#{bundle.EditNotaFiscalRequiredMessage_fornecedor}">
+                            <f:selectItems value="#{fornecedorController.itemsAvailableSelectOne}"
+                                           var="fornecedorItem"
+                                           itemValue="#{fornecedorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{notaFiscalController.create}" value="#{bundle.Save}" update="display,:NotaFiscalListForm:datalist,:growl" oncomplete="handleSubmit(args,'NotaFiscalCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NotaFiscalCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

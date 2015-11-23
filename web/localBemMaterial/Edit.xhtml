@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocalBemMaterialEditDlg" widgetVar="LocalBemMaterialEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLocalBemMaterialTitle}">
+            <h:form id="LocalBemMaterialEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{localBemMaterialController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLocalBemMaterialLabel_dataInicial}" for="dataInicial" />
+                        <p:calendar id="dataInicial" pattern="MM/dd/yyyy" value="#{localBemMaterialController.selected.dataInicial}" title="#{bundle.EditLocalBemMaterialTitle_dataInicial}" required="true" requiredMessage="#{bundle.EditLocalBemMaterialRequiredMessage_dataInicial}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocalBemMaterialLabel_dataFinal}" for="dataFinal" />
+                        <p:calendar id="dataFinal" pattern="MM/dd/yyyy" value="#{localBemMaterialController.selected.dataFinal}" title="#{bundle.EditLocalBemMaterialTitle_dataFinal}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLocalBemMaterialLabel_bemMaterial}" for="bemMaterial" />
+                        <p:selectOneMenu id="bemMaterial" value="#{localBemMaterialController.selected.bemMaterial}" required="true" requiredMessage="#{bundle.EditLocalBemMaterialRequiredMessage_bemMaterial}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{bemMaterialController.itemsAvailableSelectOne}"
+                                           var="bemMaterialItem"
+                                           itemValue="#{bemMaterialItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLocalBemMaterialLabel_local}" for="local" />
+                        <p:selectOneMenu id="local" value="#{localBemMaterialController.selected.local}" required="true" requiredMessage="#{bundle.EditLocalBemMaterialRequiredMessage_local}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{localController.itemsAvailableSelectOne}"
+                                           var="localItem"
+                                           itemValue="#{localItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{localBemMaterialController.update}" value="#{bundle.Save}" update="display,:LocalBemMaterialListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LocalBemMaterialEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LocalBemMaterialEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

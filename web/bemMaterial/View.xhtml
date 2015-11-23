@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BemMaterialViewDlg" widgetVar="BemMaterialViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBemMaterialTitle}">
+            <h:form id="BemMaterialViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bemMaterialController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_id}"/>
+                        <h:outputText value="#{bemMaterialController.selected.id}" title="#{bundle.ViewBemMaterialTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_codigoBarra}"/>
+                        <h:outputText value="#{bemMaterialController.selected.codigoBarra}" title="#{bundle.ViewBemMaterialTitle_codigoBarra}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_numeroSerie}"/>
+                        <h:outputText value="#{bemMaterialController.selected.numeroSerie}" title="#{bundle.ViewBemMaterialTitle_numeroSerie}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_dataCadastro}"/>
+                        <h:outputText value="#{bemMaterialController.selected.dataCadastro}" title="#{bundle.ViewBemMaterialTitle_dataCadastro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_valorCompra}"/>
+                        <h:outputText value="#{bemMaterialController.selected.valorCompra}" title="#{bundle.ViewBemMaterialTitle_valorCompra}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_valorAtual}"/>
+                        <h:outputText value="#{bemMaterialController.selected.valorAtual}" title="#{bundle.ViewBemMaterialTitle_valorAtual}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_observacao}"/>
+                        <h:outputText value="#{bemMaterialController.selected.observacao}" title="#{bundle.ViewBemMaterialTitle_observacao}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_patrimonio}"/>
+                        <h:outputText value="#{bemMaterialController.selected.patrimonio}" title="#{bundle.ViewBemMaterialTitle_patrimonio}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_produto}"/>
+                        <h:outputText value="#{bemMaterialController.selected.produto}" title="#{bundle.ViewBemMaterialTitle_produto}"/>
+                        <h:outputText value="#{bundle.ViewBemMaterialLabel_notaFiscal}"/>
+                        <h:outputText value="#{bemMaterialController.selected.notaFiscal}" title="#{bundle.ViewBemMaterialTitle_notaFiscal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BemMaterialViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

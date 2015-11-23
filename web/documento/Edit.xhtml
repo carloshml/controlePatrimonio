@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocumentoEditDlg" widgetVar="DocumentoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDocumentoTitle}">
+            <h:form id="DocumentoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{documentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{documentoController.selected.id}" title="#{bundle.EditDocumentoTitle_id}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{documentoController.selected.nome}" title="#{bundle.EditDocumentoTitle_nome}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_arquivo}" for="arquivo" />
+                        <p:inputTextarea rows="4" cols="30" id="arquivo" value="#{documentoController.selected.arquivo}" title="#{bundle.EditDocumentoTitle_arquivo}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_arquivo}"/>
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_bemMaterial}" for="bemMaterial" />
+                        <p:selectOneMenu id="bemMaterial" value="#{documentoController.selected.bemMaterial}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_bemMaterial}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{bemMaterialController.itemsAvailableSelectOne}"
+                                           var="bemMaterialItem"
+                                           itemValue="#{bemMaterialItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{documentoController.update}" value="#{bundle.Save}" update="display,:DocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DocumentoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DocumentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

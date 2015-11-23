@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProdutoViewDlg" widgetVar="ProdutoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProdutoTitle}">
+            <h:form id="ProdutoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{produtoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProdutoLabel_id}"/>
+                        <h:outputText value="#{produtoController.selected.id}" title="#{bundle.ViewProdutoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_descricao}"/>
+                        <h:outputText value="#{produtoController.selected.descricao}" title="#{bundle.ViewProdutoTitle_descricao}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_valorGeral}"/>
+                        <h:outputText value="#{produtoController.selected.valorGeral}" title="#{bundle.ViewProdutoTitle_valorGeral}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_saldo}"/>
+                        <h:outputText value="#{produtoController.selected.saldo}" title="#{bundle.ViewProdutoTitle_saldo}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_unidadeMedida}"/>
+                        <h:outputText value="#{produtoController.selected.unidadeMedida}" title="#{bundle.ViewProdutoTitle_unidadeMedida}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_tipoProduto}"/>
+                        <h:outputText value="#{produtoController.selected.tipoProduto}" title="#{bundle.ViewProdutoTitle_tipoProduto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProdutoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

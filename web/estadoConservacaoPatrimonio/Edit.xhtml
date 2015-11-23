@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstadoConservacaoPatrimonioEditDlg" widgetVar="EstadoConservacaoPatrimonioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEstadoConservacaoPatrimonioTitle}">
+            <h:form id="EstadoConservacaoPatrimonioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estadoConservacaoPatrimonioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEstadoConservacaoPatrimonioLabel_dataInicial}" for="dataInicial" />
+                        <p:calendar id="dataInicial" pattern="MM/dd/yyyy" value="#{estadoConservacaoPatrimonioController.selected.dataInicial}" title="#{bundle.EditEstadoConservacaoPatrimonioTitle_dataInicial}" required="true" requiredMessage="#{bundle.EditEstadoConservacaoPatrimonioRequiredMessage_dataInicial}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEstadoConservacaoPatrimonioLabel_dataFinal}" for="dataFinal" />
+                        <p:calendar id="dataFinal" pattern="MM/dd/yyyy" value="#{estadoConservacaoPatrimonioController.selected.dataFinal}" title="#{bundle.EditEstadoConservacaoPatrimonioTitle_dataFinal}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEstadoConservacaoPatrimonioLabel_patrimonio}" for="patrimonio" />
+                        <p:selectOneMenu id="patrimonio" value="#{estadoConservacaoPatrimonioController.selected.patrimonio}" required="true" requiredMessage="#{bundle.EditEstadoConservacaoPatrimonioRequiredMessage_patrimonio}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{patrimonioController.itemsAvailableSelectOne}"
+                                           var="patrimonioItem"
+                                           itemValue="#{patrimonioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstadoConservacaoPatrimonioLabel_estadoConservacao}" for="estadoConservacao" />
+                        <p:selectOneMenu id="estadoConservacao" value="#{estadoConservacaoPatrimonioController.selected.estadoConservacao}" required="true" requiredMessage="#{bundle.EditEstadoConservacaoPatrimonioRequiredMessage_estadoConservacao}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoConservacaoController.itemsAvailableSelectOne}"
+                                           var="estadoConservacaoItem"
+                                           itemValue="#{estadoConservacaoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estadoConservacaoPatrimonioController.update}" value="#{bundle.Save}" update="display,:EstadoConservacaoPatrimonioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstadoConservacaoPatrimonioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstadoConservacaoPatrimonioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

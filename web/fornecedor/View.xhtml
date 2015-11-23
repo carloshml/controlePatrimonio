@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FornecedorViewDlg" widgetVar="FornecedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFornecedorTitle}">
+            <h:form id="FornecedorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fornecedorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFornecedorLabel_id}"/>
+                        <h:outputText value="#{fornecedorController.selected.id}" title="#{bundle.ViewFornecedorTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewFornecedorLabel_cnpj}"/>
+                        <h:outputText value="#{fornecedorController.selected.cnpj}" title="#{bundle.ViewFornecedorTitle_cnpj}"/>
+                        <h:outputText value="#{bundle.ViewFornecedorLabel_razaoSocial}"/>
+                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" title="#{bundle.ViewFornecedorTitle_razaoSocial}"/>
+                        <h:outputText value="#{bundle.ViewFornecedorLabel_nomeFantasia}"/>
+                        <h:outputText value="#{fornecedorController.selected.nomeFantasia}" title="#{bundle.ViewFornecedorTitle_nomeFantasia}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FornecedorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

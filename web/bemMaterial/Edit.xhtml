@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BemMaterialEditDlg" widgetVar="BemMaterialEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBemMaterialTitle}">
+            <h:form id="BemMaterialEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bemMaterialController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{bemMaterialController.selected.id}" title="#{bundle.EditBemMaterialTitle_id}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_codigoBarra}" for="codigoBarra" />
+                        <p:inputText id="codigoBarra" value="#{bemMaterialController.selected.codigoBarra}" title="#{bundle.EditBemMaterialTitle_codigoBarra}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_codigoBarra}"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_numeroSerie}" for="numeroSerie" />
+                        <p:inputText id="numeroSerie" value="#{bemMaterialController.selected.numeroSerie}" title="#{bundle.EditBemMaterialTitle_numeroSerie}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_numeroSerie}"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_dataCadastro}" for="dataCadastro" />
+                        <p:calendar id="dataCadastro" pattern="MM/dd/yyyy HH:mm:ss" value="#{bemMaterialController.selected.dataCadastro}" title="#{bundle.EditBemMaterialTitle_dataCadastro}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_dataCadastro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_valorCompra}" for="valorCompra" />
+                        <p:inputText id="valorCompra" value="#{bemMaterialController.selected.valorCompra}" title="#{bundle.EditBemMaterialTitle_valorCompra}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_valorCompra}"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_valorAtual}" for="valorAtual" />
+                        <p:inputText id="valorAtual" value="#{bemMaterialController.selected.valorAtual}" title="#{bundle.EditBemMaterialTitle_valorAtual}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_valorAtual}"/>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_observacao}" for="observacao" />
+                        <p:inputText id="observacao" value="#{bemMaterialController.selected.observacao}" title="#{bundle.EditBemMaterialTitle_observacao}" />
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_patrimonio}" for="patrimonio" />
+                        <p:selectOneMenu id="patrimonio" value="#{bemMaterialController.selected.patrimonio}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{patrimonioController.itemsAvailableSelectOne}"
+                                           var="patrimonioItem"
+                                           itemValue="#{patrimonioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_produto}" for="produto" />
+                        <p:selectOneMenu id="produto" value="#{bemMaterialController.selected.produto}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_produto}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{produtoController.itemsAvailableSelectOne}"
+                                           var="produtoItem"
+                                           itemValue="#{produtoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBemMaterialLabel_notaFiscal}" for="notaFiscal" />
+                        <p:selectOneMenu id="notaFiscal" value="#{bemMaterialController.selected.notaFiscal}" required="true" requiredMessage="#{bundle.EditBemMaterialRequiredMessage_notaFiscal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{notaFiscalController.itemsAvailableSelectOne}"
+                                           var="notaFiscalItem"
+                                           itemValue="#{notaFiscalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bemMaterialController.update}" value="#{bundle.Save}" update="display,:BemMaterialListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BemMaterialEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BemMaterialEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

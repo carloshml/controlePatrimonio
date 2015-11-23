@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotaFiscalViewDlg" widgetVar="NotaFiscalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNotaFiscalTitle}">
+            <h:form id="NotaFiscalViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{notaFiscalController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_id}"/>
+                        <h:outputText value="#{notaFiscalController.selected.id}" title="#{bundle.ViewNotaFiscalTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_numero}"/>
+                        <h:outputText value="#{notaFiscalController.selected.numero}" title="#{bundle.ViewNotaFiscalTitle_numero}"/>
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_dataEmissao}"/>
+                        <h:outputText value="#{notaFiscalController.selected.dataEmissao}" title="#{bundle.ViewNotaFiscalTitle_dataEmissao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_midia}"/>
+                        <h:outputText value="#{notaFiscalController.selected.midia}" title="#{bundle.ViewNotaFiscalTitle_midia}"/>
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_valorTotal}"/>
+                        <h:outputText value="#{notaFiscalController.selected.valorTotal}" title="#{bundle.ViewNotaFiscalTitle_valorTotal}"/>
+                        <h:outputText value="#{bundle.ViewNotaFiscalLabel_fornecedor}"/>
+                        <h:outputText value="#{notaFiscalController.selected.fornecedor}" title="#{bundle.ViewNotaFiscalTitle_fornecedor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NotaFiscalViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
